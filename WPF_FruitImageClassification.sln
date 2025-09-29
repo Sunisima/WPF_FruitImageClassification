@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_FruitImageClassification", "WPF_FruitImageClassification.csproj", "{EEA06A5A-14BD-4A63-AF48-3C0E11961858}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruitImageClassification_Tests", "FruitImageClassification_Tests\FruitImageClassification_Tests.csproj", "{111646BC-7D51-476C-3588-766DA8A33011}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEA06A5A-14BD-4A63-AF48-3C0E11961858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA06A5A-14BD-4A63-AF48-3C0E11961858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA06A5A-14BD-4A63-AF48-3C0E11961858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA06A5A-14BD-4A63-AF48-3C0E11961858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{111646BC-7D51-476C-3588-766DA8A33011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{111646BC-7D51-476C-3588-766DA8A33011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{111646BC-7D51-476C-3588-766DA8A33011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{111646BC-7D51-476C-3588-766DA8A33011}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28A36150-785A-4CFD-8705-1066CFFBAA04}
+	EndGlobalSection
+EndGlobal
