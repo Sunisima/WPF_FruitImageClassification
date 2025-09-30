@@ -7,18 +7,24 @@ namespace WPF_FruitImageClassification
     {
         static void Main(string[] args)
         {
+            // Find project root by going two folders up from bin\Debug\net8.0
+            string project_Root = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\.."));
+            // Define path to save the trained model
+            string model_Path = Path.Combine(project_Root, @"Models\fruitModel.zip");
+            // Create Models directory if it doesn't exist
+            if (!Directory.Exists(model_Path))
+            {
+                Directory.CreateDirectory(project_Root + @"\Models");
+            }
             // INITIALISERING
             // MLContext is a gateway til ML.NET and makes it easy to reproduce results
             var mlContext = new MLContext(seed: 1);
 
             // === DATA ===
 
-            // Find project root by going two folders up from bin\Debug\net8.0
-            string projectRoot = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\.."));
-
             // Build paths to training and test folders from project root
-            string trainPath = Path.Combine(projectRoot, "data", "train");
-            string testPath = Path.Combine(projectRoot, "data", "test");
+            string trainPath = Path.Combine(project_Root, "Data", "Train");
+            string testPath = Path.Combine(project_Root, "Data", "Test");
 
             // Load all training data:
             // 1. Get all subfolders under the training path
@@ -71,9 +77,8 @@ namespace WPF_FruitImageClassification
             var model = pipeline.Fit(trainData);
 
             // Save the trained model to a .zip file so it can be reused later
-            string modelPath = Path.Combine(Environment.CurrentDirectory, "fruitModel.zip");
-            mlContext.Model.Save(model, trainData.Schema, modelPath);
-            Console.WriteLine($"Model saved to: {modelPath}");
+            mlContext.Model.Save(model, trainData.Schema, model_Path);
+            Console.WriteLine($"Model saved to: {model_Path}");
 
             // === EVALUATION ===
 
@@ -88,6 +93,22 @@ namespace WPF_FruitImageClassification
             Console.WriteLine($"LogLoss: {metrics.LogLoss:F4}");          // How confident the model is in predictions
             Console.WriteLine("Confusion Matrix:");                       // Shows correct vs. incorrect predictions per class
             Console.WriteLine(metrics.ConfusionMatrix.GetFormattedConfusionTable());
+            
+            WriteBenchmarkResults(project_Root, "fruitModel", metrics);
+        }
+
+        private static void WriteBenchmarkResults(string project_Root, string modelName, MulticlassClassificationMetrics metrics)
+        {
+            string sharedResouces = Path.Combine(project_Root, "SharedResouces");
+            if (!Directory.Exists(sharedResouces))
+            {
+                Directory.CreateDirectory(sharedResouces);
+            }
+            string results = $"{modelName}\t" +
+                             $"{metrics.ConfusionMatrix.GetFormattedConfusionTable()}";
+            string resultsPath = Path.Combine(sharedResouces, "BenchmarkResults.csv");
+            File.AppendAllText(resultsPath, results + Environment.NewLine);
+            Console.WriteLine($"Benchmark results saved to: {resultsPath}");
         }
     }
 }
