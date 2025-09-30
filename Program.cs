@@ -99,14 +99,16 @@ namespace WPF_FruitImageClassification
 
         private static void WriteBenchmarkResults(string project_Root, string modelName, MulticlassClassificationMetrics metrics)
         {
-            string sharedResouces = Path.Combine(project_Root, "SharedResouces");
-            if (!Directory.Exists(sharedResouces))
+            string sharedRessources = Path.Combine(project_Root, "SharedRessources");
+            if (!Directory.Exists(sharedRessources))
             {
-                Directory.CreateDirectory(sharedResouces);
+                Directory.CreateDirectory(sharedRessources);
             }
-            string results = $"{modelName}\t" +
+            string results = $"{modelName}\n" +
+                             $"F1: {metrics.LogLoss:F1}\n" +
+                             $"Accuracy: {metrics.MacroAccuracy:P2}\n" +
                              $"{metrics.ConfusionMatrix.GetFormattedConfusionTable()}";
-            string resultsPath = Path.Combine(sharedResouces, "BenchmarkResults.csv");
+            string resultsPath = Path.Combine(sharedRessources, "BenchmarkResults.csv");
             File.AppendAllText(resultsPath, results + Environment.NewLine);
             Console.WriteLine($"Benchmark results saved to: {resultsPath}");
         }

@@ -1,4 +1,7 @@
-fruitModel	
+fruitModel
+F1: 0,9
+Accuracy: 95,54 %
+
 Confusion table
               ||========================
 PREDICTED     ||     0 |     1 |     2 | Recall
