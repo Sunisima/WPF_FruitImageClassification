@@ -1,4 +1,4 @@
-﻿namespace WPF_FruitImageClassification
+﻿namespace WPF_FruitImageClassification.Models
 {
     /// <summary>
     /// Represents inputdata to train and evaluate the model

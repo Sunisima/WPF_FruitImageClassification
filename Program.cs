@@ -1,6 +1,6 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.Data;
-using Microsoft.ML.Vision;
+using WPF_FruitImageClassification.Models;
 namespace WPF_FruitImageClassification
 {
     internal class Program
@@ -93,7 +93,7 @@ namespace WPF_FruitImageClassification
             Console.WriteLine($"LogLoss: {metrics.LogLoss:F4}");          // How confident the model is in predictions
             Console.WriteLine("Confusion Matrix:");                       // Shows correct vs. incorrect predictions per class
             Console.WriteLine(metrics.ConfusionMatrix.GetFormattedConfusionTable());
-            
+
             WriteBenchmarkResults(project_Root, "fruitModel", metrics);
         }
 

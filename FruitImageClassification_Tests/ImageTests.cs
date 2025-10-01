@@ -1,8 +1,6 @@
-﻿using Xunit;
-using System.IO;
-using System.Linq;
-using Microsoft.ML;
-using WPF_FruitImageClassification;
+﻿using Microsoft.ML;
+using WPF_FruitImageClassification.Models;
+using Xunit;
 
 namespace FruitImageClassification_Tests
 {
